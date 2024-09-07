@@ -1,4 +1,4 @@
-
+/* CSS padrão */
 .container-login{
     width: 100%;
     height: 100vh;
@@ -7,67 +7,28 @@
     align-items: center;
 
 }
+
+/* CSS da div container-logo */
 .container-logo{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
     color: #4753D9;
     height: 100vh;
     margin-right: 3%;
     margin-bottom: 6%;
 }
 .container-login .container-logo h1{
+    font-family: "bayon";
+    margin-top: 22%;
     font-size: 95px;
     font-weight: 300;
 }
-.container-login .container-logo img{
-    width: 60%;
-}
-.container-form-login{
-    padding: 15px;
-    box-shadow: 2px 2px 6px #00000052;
-    width: 25%;
-    border-radius: 5px;
-}
-.container-form-login .header-tittle{
-    font-size: 12px;
-    margin-bottom: 12px;
-    color: #747373;
-}
-.container-form-login .header-tittle h1{
-    font-weight: 300;
-}
-.content-input{
+.container-login .container-logo .container-logo-img img{
     display: flex;
-    flex-direction: column;
-    font-size: 12px;
-    margin-bottom: 12px;
-}
-.content-input label{
-    margin-bottom: 5px;
-    font-weight: 500;
-}
-.content-input input{
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #00000052;
-}
-button{
-    font-size: 17px;
-    font-weight: 300;
-    padding: 7px;
-    border: none;
-    background-color: #4753D9;
-    color: #fff;
-    border-radius: 5px;
-    width: 70px;
-    margin-bottom: 15px;
-}
-.form-button{
-    display: flex;
-    flex-direction: row-reverse;
+    margin-left: 15%;
+    width: 70%;
 }
 .quadrado1 {
     position: absolute;
@@ -100,5 +61,104 @@ button{
     width: 18%;
     height: 30%;
     background-color: #4753D9;
+}
+
+/* CSS da div container-form-login */
+.container-form-login{
+    padding: 15px;
+    box-shadow: 2px 2px 6px #00000052;
+    width: 25%;
+    border-radius: 5px;
+}
+.container-form-login .header-tittle{
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #747373;
+}
+.container-form-login .header-tittle h1{
+    font-family: "bayon";
+    font-weight: 300;
+}
+.content-input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+.content-input label{
+    font-family: "bayon";
+    font-size: 12px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+.content-input input{
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #0000005b;
+    color: #747373;
+}
+
+button{
+    font-size: 17px;
+    font-weight: 300;
+    padding: 7px;
+    border: none;
+    background-color: #4753D9;
+    color: #fff;
+    border-radius: 5px;
+    width: 70px;
+    margin-bottom: 15px;
+}
+.form-button{
+    display: flex;
+    flex-direction: row-reverse;
+}
+button:hover{
+    background-color: #3E994F;
+    transition: 0.3s;
+}
+
+
+/* CSS responsivo */
+@media screen and (max-width: 780px){
+    .quadrado1, .quadrado2,
+    .quadrado3, .quadrado4{
+        display: none;
+    }
+    .container-login{
+        flex-direction: column;
+    }
+    .container-login .container-logo h1{
+        margin: 0;
+        font-size: 80px;
+    }
+    .container-form-login{
+        width: 80%;
+        padding: 5%;
+
+    }
+    .container-login .container-form-login h1{
+        text-align: center;
+    }
+    .container-login .container-form-login
+    .form-button{
+        justify-content: center;
+    }
+    .container-login .container-form-login
+    .form-button button{
+        width: 100%;
+    }
+    .container-login .container-logo .container-logo-img{
+        display: none;
+    }
+    .container-login .container-logo-footer{
+        background-image: url('src/pages/Login/img/educacaosergipe_logo.png');
+        background-size: contain;
+        background-position: center; 
+        background-repeat: no-repeat; 
+        width: 40%; 
+        height: 65%;
+        padding: 10%;
+        
+    }
 }
 

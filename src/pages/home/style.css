@@ -10,9 +10,9 @@
 }
 .container-home h1{
     text-align: center;
-    color: blueviolet;
+    color: #4753D9;
     font-size: 50px;
-    border-bottom: 1px solid blueviolet;
+    border-bottom: 1px solid #4753D9;
     width: 27%;
     text-align: center;
     padding: 20px;
@@ -21,7 +21,7 @@
     border: none;
     padding: 20px;
     width: 30%;
-    background-color: blueviolet;
+    background-color: #4753D9;
     color: white;
     font-size: 20px;
     font-weight: bold;
@@ -31,7 +31,7 @@
 }
 .container-home button:hover{
     background-color: rgba(137, 43, 226, 0.438);
-    color: blueviolet;
+    color: #4753D9;
 }
 
 
