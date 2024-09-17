@@ -1,5 +1,6 @@
 import React from 'react';
 import './Sidebar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Sidebar = () => {
   return (

@@ -5,6 +5,6 @@ import Sidebar from './componentes/Sidebar';
 
 export default function App(){
     return(
-        <Login />
+        <Sidebar />
     )
 }
