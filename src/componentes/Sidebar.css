@@ -6,7 +6,7 @@ span {
 .sidebar {
     display: relative;
     background-color: #f0f0f0;
-    width: 250px;
+    width: 13%;
     padding: 20px;
     height: 100vh;
   }
@@ -72,5 +72,25 @@ span {
   }
   
   .logout i {
-    margin-right: 0px;
+    margin-right: 10px;
+    color:#f0f0f0
+  }
+
+  a.logout {
+    text-decoration: none; /* Remove o sublinhado */
+  }
+  .container {
+    display: flex;
+  }
+  
+  .main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .home-container {
+    width: 50%;
+    text-align: center;
   }
