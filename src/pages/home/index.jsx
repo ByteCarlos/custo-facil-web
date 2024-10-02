@@ -1,9 +1,10 @@
 import './style.css'
+import Sidebar from '../../componentes/Sidebar'
+
 const Home = () => {
     return(
         <div className='container-home'>
-            <h1>Home</h1>
-            <button>Sair</button>
+            <Sidebar />
         </div>
     )
 }
