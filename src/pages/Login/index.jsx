@@ -1,3 +1,4 @@
+import CustomSidebar from '../../componentes/CustomSidebar'
 import './style.css'
 const Login = () => {
     return (

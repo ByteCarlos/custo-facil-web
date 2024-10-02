@@ -1,10 +1,10 @@
 import './style.css'
-import Sidebar from '../../componentes/Sidebar'
+import CustomSidebar from '../../componentes/CustomSidebar'
 
 const Home = () => {
     return(
         <div className='container-home'>
-            <Sidebar />
+            <CustomSidebar />
         </div>
     )
 }
