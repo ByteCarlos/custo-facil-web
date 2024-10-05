@@ -1,5 +1,6 @@
-import './style.css'
-const Login = () => {
+import './Login.css'
+
+export default function Login () {
     return (
         <div className="container-login">
             <div className='quadrado1'>.</div>{/* quadrado1 */}
@@ -14,21 +15,21 @@ const Login = () => {
                 </div>{/* container-logo-img */}
             </div>{/* container-logo */}
             <div className="container-form-login">
-                <div className="header-tittle">
-                    <h1>Login</h1>
+                <div className="header-title">
+                    <h1>LOGIN</h1>
                 </div>{/* header-tittle */}
 
                 <form action="">
                     <div className="content-input">
                         <label htmlFor="email-text">Email</label>
-                        <input type="email" name="email-text" id="email-text" required />
+                        <input type="email" name="email-text" id="email-text" placeholder='Digite seu email' required />
                     </div>{/* content-input */}
                     <div className="content-input">
                         <label htmlFor="password-text">Senha</label>
-                        <input type="password" name="password-text" id="password-text" required />
+                        <input type="password" name="password-text" id="password-text" placeholder='Digite sua senha' required />
                     </div>{/* content-input */}
                     <div className='form-button'>
-                        <button type="submit">Entrar</button>
+                        <button type="submit">ENTRAR</button>
                     </div>{/* form-button */}
                 </form>
             </div>{/* container-form-login */}
@@ -36,5 +37,3 @@ const Login = () => {
         </div> /* container-login */
     )
 }
-
-export default Login

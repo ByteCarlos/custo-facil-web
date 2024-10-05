@@ -70,14 +70,14 @@
     width: 25%;
     border-radius: 5px;
 }
-.container-form-login .header-tittle{
+.container-form-login .header-title{
     font-size: 12px;
     margin-bottom: 12px;
     color: #747373;
 }
-.container-form-login .header-tittle h1{
-    font-family: "bayon";
-    font-weight: 300;
+.container-form-login .header-title h1{
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
 }
 .content-input{
     display: flex;
@@ -85,34 +85,42 @@
     margin-bottom: 12px;
 }
 .content-input label{
-    font-family: "bayon";
+    font-family: "Roboto", sans-serif;
     font-size: 12px;
     margin-bottom: 5px;
     font-weight: 500;
     color: #747373;
+    text-align: left;
 }
 .content-input input{
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #0000005b;
     color: #747373;
 }
 
-button{
-    font-size: 17px;
-    font-weight: 300;
+.form-button{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.form-button button {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
     padding: 7px;
     border: none;
+    cursor: pointer;
     background-color: #4753D9;
     color: #fff;
     border-radius: 5px;
     width: 70px;
     margin-bottom: 15px;
 }
-.form-button{
-    display: flex;
-    flex-direction: row-reverse;
-}
+
 button:hover{
     box-shadow: 0px 0px 5px 1px #4753d99f;
     transition: 0.3s;
@@ -152,7 +160,7 @@ button:hover{
         display: none;
     }
     .container-login .container-logo-footer{
-        background-image: url('src/pages/Login/img/educacaosergipe_logo.png');
+        background-image: url('../../assets/img/educacaosergipe_logo.png');
         background-size: contain;
         background-position: center; 
         background-repeat: no-repeat; 
