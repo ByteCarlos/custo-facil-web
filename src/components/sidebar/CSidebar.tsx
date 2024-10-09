@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Groups2Outlined, Settings, Logout, DensitySmall, LeaderboardOutlined } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import './CSidebar.css'; // Arquivo de estilos
+import './CSidebar.css';
 import { UserContext } from '../../context/UserContext';
 
 const CSidebar: React.FC = () => {
