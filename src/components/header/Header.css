@@ -1,0 +1,26 @@
+header {
+    height: 10vh;
+}
+
+header .header-logo {
+    background-color: #fff;
+    padding-left: 40px;
+    display: inline-flex;
+    height: 100%;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+header .header-logo img {
+    height: 60px;
+}
+
+header .header-logo h1 {
+    font-family: "bayon";
+    font-size: 30px;
+    font-weight: 300;
+    color: #5D7285;
+    margin: 0;
+    margin-left: 20px;
+}

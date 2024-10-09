@@ -1,0 +1,132 @@
+/* Estilos gerais para a Sidebar */
+.custom-sidebar {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    color: white;
+    width: 20vw;
+}
+
+.collapsed-sidebar {
+    width: 80px;
+}
+
+.custom-sidebar .sidebar {
+    height: 100%;
+    width: 20vw;
+    min-width: 20vw;
+}
+
+.custom-sidebar .sidebar .menu {
+    height: 85%;
+}
+
+.custom-sidebar .sidebar .menu ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    height: 100%;
+}
+
+/* Logo da sidebar, diferente se estiver colapsada */
+.logo {
+    height: 5%;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    color: #5D7285;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Ajusta o tamanho da logo quando está colapsado */
+.logo h1 {
+    margin: 0;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+.logo.collapsed h1 {
+    font-size: 24px;
+}
+
+/* Estilos para o Menu */
+.menu a {
+    width: 100%;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21.95px;
+    letter-spacing: 0.01em;
+    text-align: left;
+    display: block;
+    padding: 10px 20px;
+    color: #5D7285;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.menu-icon {
+    width: 18px;
+    height: 16px;
+    color: #5D7285;
+}
+
+/* Efeito hover nos itens de menu */
+.menu a:hover {
+    text-decoration: none;
+}
+
+/* MenuItem com ícone */
+.menu-item {
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+.menu-item:hover {
+    cursor: pointer;
+}
+
+/* Footer da sidebar */
+.sidebar-footer {
+    margin-top: auto;
+    margin: 10px 20px;
+    background-color: #667A8A;
+    border-radius: 5px;
+}
+
+.collapsed-sidebar .sidebar-footer a {
+    padding: 0px;
+    padding-left: 5px;
+}
+
+.sidebar-footer .menu-item a,
+.sidebar-footer .menu-icon {
+    color: #fff;
+}
+
+.sidebar-footer .menu-item a:hover {
+    background-color: #667A8A;
+    border-radius: 5px;
+}
+
+/* Responsividade - Sidebar com largura total no mobile */
+@media (max-width: 768px) {
+    .custom-sidebar {
+        position: absolute;
+        z-index: 1000;
+        width: 80%;
+        height: 100vh;
+    }
+
+    .toggle-btn {
+        top: 20px;
+        right: -40px;
+    }
+}
