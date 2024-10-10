@@ -51,12 +51,6 @@ const CSidebar: React.FC = () => {
                             Usuários
                         </MenuItem>
                     </Link>
-
-                    <Link to="/configuracoes">
-                        <MenuItem className='menu-item' icon={<Settings className='menu-icon' />}>
-                            Configurações
-                        </MenuItem>
-                    </Link>
                 </div>
 
                 <div className="sidebar-footer">
