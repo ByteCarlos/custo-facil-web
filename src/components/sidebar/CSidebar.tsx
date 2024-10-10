@@ -1,7 +1,7 @@
 // CSidebar.tsx
 import React, { useContext, useState } from 'react';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-import { Groups2Outlined, Settings, Logout, DensitySmall, LeaderboardOutlined, HomeOutlined, CurrencyExchangeOutlined, DateRangeOutlined } from '@mui/icons-material';
+import { Groups2Outlined, Logout, DensitySmall, LeaderboardOutlined, HomeOutlined, CurrencyExchangeOutlined, DateRangeOutlined } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import './CSidebar.css';
 import { UserContext } from '../../context/UserContext';
@@ -54,6 +54,7 @@ const CSidebar: React.FC = () => {
                 </div>
 
                 <div className="sidebar-footer">
+                    {/* @todo: implementar onClick com função para remover usuário salvo */}
                     <Link to="/logout">
                         <MenuItem className='menu-item' icon={<Logout className='menu-icon' />}>
                             Sair
