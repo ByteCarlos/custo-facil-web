@@ -1,8 +1,18 @@
+import { useEffect } from 'react';
 import { useLogin } from '../../services/useLogin';
 import './Login.css';
 
-export default function Login () {
+interface LoginProps {
+    setLoading: (loading: boolean) => void;
+    setLoadingText: (text: string) => void;
+}
+
+export default function Login ({ setLoading, setLoadingText }: LoginProps) {
     const { handleLoginSubmit, loading } = useLogin();
+
+    useEffect(() => {
+        setLoading(loading);
+    }, [loading, setLoading])
 
     return (
         <div className="container-login">
@@ -25,11 +35,11 @@ export default function Login () {
                 <form action="" onSubmit={handleLoginSubmit}>
                     <div className="content-input">
                         <label htmlFor="email-text">Email</label>
-                        <input type="email" name="email-text" id="email-text" placeholder='Digite seu email' required />
+                        <input type="email" name="email" id="email-text" placeholder='Digite seu email' required />
                     </div>{/* content-input */}
                     <div className="content-input">
                         <label htmlFor="password-text">Senha</label>
-                        <input type="password" name="password-text" id="password-text" placeholder='Digite sua senha' required />
+                        <input type="password" name="password" id="password-text" placeholder='Digite sua senha' required />
                     </div>{/* content-input */}
                     <div className='form-button'>
                         <button type="submit">ENTRAR</button>

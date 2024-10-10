@@ -42,8 +42,8 @@ export const useLogin = () => {
       // Em caso de erro, exibe um alerta de erro
       Swal.fire({
         icon: 'error',
-        title: 'Erro no login',
-        text: 'Falha ao tentar login. Verifique suas credenciais.',
+        title: 'Ocorreu um erro',
+        text: 'Falha ao tentar realizar o login. Verifique suas credenciais.',
         confirmButtonText: 'Tentar novamente',
       });
     } finally {

@@ -49,8 +49,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem('user', JSON.stringify(userData));
       localStorage.setItem('token', userData.token);
     } catch (error) {
-      console.error("Erro ao fazer login:", error);
-      throw new Error("Login failed");
+      throw new Error("A requisição falhou ao realizar o login");
     }
   };
 
