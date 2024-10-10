@@ -1,6 +1,9 @@
-import './Login.css'
+import { useLogin } from '../../services/useLogin';
+import './Login.css';
 
 export default function Login () {
+    const { handleLoginSubmit, loading } = useLogin();
+
     return (
         <div className="container-login">
             <div className='quadrado1'>.</div>{/* quadrado1 */}
@@ -19,7 +22,7 @@ export default function Login () {
                     <h1>LOGIN</h1>
                 </div>{/* header-tittle */}
 
-                <form action="">
+                <form action="" onSubmit={handleLoginSubmit}>
                     <div className="content-input">
                         <label htmlFor="email-text">Email</label>
                         <input type="email" name="email-text" id="email-text" placeholder='Digite seu email' required />
