@@ -31,7 +31,7 @@ export const UserContext = createContext<UserContextType>({
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(() => {
     let userData = localStorage.getItem('user');
-    return userData ? JSON.parse(userData) : { name: "João Miguel", email: "teste@gmail.com"};
+    return userData ? JSON.parse(userData) : null;
   });
 
   // Função de login que usa Axios para autenticação
