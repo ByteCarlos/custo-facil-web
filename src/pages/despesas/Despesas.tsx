@@ -6,7 +6,7 @@ export default function Despesas() {
   const [daysLeft, setDaysLeft] = useState(0);
   
   // Função para calcular os dias restantes até a data de competência
-  const calculateDaysLeft = (endDate: string) => { // Adicionei o tipo 'string' ao parâmetro endDate
+  const calculateDaysLeft = (endDate: string) => {
     const today = new Date(); // Data atual
     const [day, month, year] = endDate.split('/').map(Number); // Quebra a data no formato DD/MM/YYYY
     const end = new Date(year, month - 1, day); // Cria o objeto Date com a data de competência
@@ -63,16 +63,7 @@ export default function Despesas() {
               </tr>
             </thead>
             <tbody>
-              {/* Exemplo de dados, pode ser populado dinamicamente */}
-              <tr>
-                <td>01</td>
-                <td>Abubakar Alghazali</td>
-                <td>Managing Director</td>
-                <td>15/11/2022</td>
-                <td>R$46,531.00</td>
-                <td><button className="btn btn-sm btn-primary">Editar</button></td>
-              </tr>
-              {/* Adicionar mais linhas conforme necessário */}
+              {/* Linhas da tabela ficarão vazias, à espera de dados do back-end */}
             </tbody>
           </table>
         </div>
