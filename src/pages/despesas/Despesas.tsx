@@ -26,26 +26,26 @@ export default function Despesas() {
     <div className="content-container despesas-container">
       <h2>Cadastro Despesas</h2>
       <div className="form-section">
-        <div className="form-group">
+        <div className="form-group d-flex align-items-center">
           <label htmlFor="name">Name</label>
           <input type="text" id="name" className="form-control" placeholder="Enter payment name" />
         </div>
-        <div className="form-group">
+        <div className="form-group d-flex align-items-center">
           <label htmlFor="despesa">Despesa</label>
           <select id="despesa" className="form-control">
             <option value="">Select designation</option>
-            {/* Adicionar mais opções conforme necessário */}
+            {/* Add more options as needed */}
           </select>
         </div>
-        <div className="form-group">
+        <div className="form-group d-flex align-items-center">
           <label htmlFor="valor">Valor R$</label>
           <input type="text" id="valor" className="form-control" placeholder="Valor" />
         </div>
-        <div className="form-group">
+        <div className="form-group d-flex align-items-center">
           <label htmlFor="pago">Pago</label>
           <input type="date" id="pago" className="form-control" />
+          <button className="btn btn-success custom-button">Adicionar</button>
         </div>
-        <button className="btn btn-success">Adicionar</button>
       </div>
 
       <div className="table-section mt-4">
