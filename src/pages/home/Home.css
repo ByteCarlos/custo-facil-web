@@ -1,3 +1,4 @@
+/*DEFINIÇÕES GLOBAIS*/
 *{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -5,17 +6,47 @@
     margin: 0;
     padding: 0;
 }
-.home-container .home-title h1{
+/*ESTILO DA PAGINA*/
+.home-title{
+    margin: 6% 0% 6% 0%;
+}
+h1{
     font-size: 20px;
-    margin-bottom: 65px;
+    color: #000;
 }
-.home-container .home-table{
-    width: 90%;
-    height: 50%;
-    border: 1px solid #000;
-}
-.home-container .home-table .table-title tr{
+.content-container{
     display: flex;
-    justify-content: space-between;
-    font-weight: 200;
+    flex-direction: column;
+    background-color: #f4f4f4;
+}
+/*ESTILO DA TABELA*/
+.home-table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.action-table{
+    width: 95%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+/*CABEÇALHO*/
+thead tr th{
+    font-size: 14px;
+    font-weight: 450;
+
+}
+.nome-acao{
+    padding-left: 60px;
+}
+th, td{
+    text-align: left;
+}
+th{
+    text-transform: uppercase;
+    border-bottom: 1px soolid #333;
+}
+td{
+    height: 40px;
+    border-bottom: 1px solid #ccc;
 }

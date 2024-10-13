@@ -2,26 +2,56 @@ import './Home.css'
 
 export default function Home () {
     return (
-        <div className="content-container home-container">
+        <div className="content-container">
             <div className='home-title'>
                 <h1>BEM-VINDO AO SEDUC</h1>
             </div>
             <div className='home-table'>
-                <table>
-                    <div className='table-title'>
+                <table className='action-table'>
+                    <thead>
                         <tr>
-                            <div className='th-left'>
-                                <th>Nome da ação</th>
-                            </div>
-                            <div className='th-right'>
-                                <th>Nome</th>
-                                <th>Data</th>
-                            </div>
+                            <th className='nome-acao'>Nome da ação</th>
+                            <th>Nome</th>
+                            <th>Data</th>
                         </tr>
-                    </div>
-                    <tr>
-                        <td>ola</td>
-                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
