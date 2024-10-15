@@ -4,7 +4,8 @@ import axios from 'axios';
 // Definindo o formato das informações do usuário
 interface User {
   name: string;
-  email: string;
+  department: number;
+  role: string;
 }
 
 interface LoginCredentials {
@@ -42,8 +43,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
       // Atualiza o contexto com os dados do usuário retornados pela API
       setUser({
-        name: userData.name,
-        email: userData.email,
+        name: userData.nome,
+        department: userData.department,
+        role: userData.role
       });
       
       localStorage.setItem('user', JSON.stringify(userData));

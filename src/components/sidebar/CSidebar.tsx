@@ -8,7 +8,7 @@ import { UserContext } from '../../context/UserContext';
 
 const CSidebar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, logout } = useContext(UserContext);
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
@@ -55,7 +55,7 @@ const CSidebar: React.FC = () => {
 
                 <div className="sidebar-footer">
                     {/* @todo: implementar onClick com função para remover usuário salvo */}
-                    <Link to="/logout">
+                    <Link to="/" onClick={logout}>
                         <MenuItem className='menu-item' icon={<Logout className='menu-icon' />}>
                             Sair
                         </MenuItem>
