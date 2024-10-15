@@ -4,7 +4,8 @@ import axios from 'axios';
 // Definindo o formato das informações do usuário
 interface User {
   name: string;
-  email: string;
+  department: number;
+  role: string;
 }
 
 interface LoginCredentials {
@@ -31,7 +32,7 @@ export const UserContext = createContext<UserContextType>({
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(() => {
     let userData = localStorage.getItem('user');
-    return userData ? JSON.parse(userData) : { name: "João Miguel", email: "teste@gmail.com"};
+    return userData ? JSON.parse(userData) : null;
   });
 
   // Função de login que usa Axios para autenticação
@@ -42,15 +43,15 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
       // Atualiza o contexto com os dados do usuário retornados pela API
       setUser({
-        name: userData.name,
-        email: userData.email,
+        name: userData.nome,
+        department: userData.department,
+        role: userData.role
       });
       
       localStorage.setItem('user', JSON.stringify(userData));
       localStorage.setItem('token', userData.token);
     } catch (error) {
-      console.error("Erro ao fazer login:", error);
-      throw new Error("Login failed");
+      throw new Error("A requisição falhou ao realizar o login");
     }
   };
 

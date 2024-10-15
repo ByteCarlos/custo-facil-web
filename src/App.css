@@ -17,3 +17,17 @@ main .content-container {
     width: 100%;
     padding: 20px 30px;
 }
+
+.loading-overlay {
+    position: fixed; /* Fixa a sobreposição na tela */
+    top: 0; /* Posiciona no topo */
+    left: 0; /* Posiciona à esquerda */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo preto com opacidade de 10% */
+    display: flex; /* Usando flexbox para centralizar */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    z-index: 1000; /* Certifica-se de que está acima de outros elementos */
+  }
+  
