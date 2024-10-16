@@ -20,7 +20,7 @@ export default function Despesas() {
     // Data de exemplo, pode ser alterada conforme a necessidade
     const days = calculateDaysLeft('25/10/2024');
     setDaysLeft(days);
-  }, []);
+  }, [daysLeft]);
 
   return (
     <div className="content-container despesas-container">
