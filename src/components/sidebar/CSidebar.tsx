@@ -18,7 +18,7 @@ const CSidebar: React.FC = () => {
     <div className={`custom-sidebar ${collapsed ? 'collapsed-sidebar' : ''}`}>
         <Sidebar className='sidebar' collapsed={collapsed}>
             <div className="logo" onClick={toggleSidebar}>
-                <h1>{collapsed ? <DensitySmall /> : `Olá, ${user ? user.name : ''}`}</h1>
+                <h1>{collapsed ? <DensitySmall /> : `Olá, ${user ? user.nome : ''}`}</h1>
             </div>
             <Menu className='menu'>
                 <div className="sidebar-main">
