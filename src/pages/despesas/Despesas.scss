@@ -1,0 +1,120 @@
+.despesas-container {
+  // Estilo geral para a seção de despesas
+  padding: 20px;
+
+  // Estilo para o título
+  h2 {
+    margin-bottom: 20px; // Espaçamento inferior do título
+  }
+
+  & .form-section {
+    // Estilo para o contêiner do formulário
+    display: flex; // Usar flexbox para layout responsivo
+    flex-wrap: wrap; // Permitir que os itens quebrem para a próxima linha
+    gap: 20px; // Espaçamento entre os itens
+    justify-content: flex-start; // Alinhar itens à esquerda
+
+    @media (max-width: 768px) {
+      flex-direction: column; // Mudar para coluna em telas menores
+    }
+  }
+
+  & .form-item {
+    // Estilo para cada item do formulário
+    flex: 1; // Itens ocupam espaço flexível
+    min-width: 200px; // Largura mínima para os itens
+
+    // Estilo para o botão de adicionar
+    & .btn-success {
+      margin-left: 40px;
+      margin-top: 20px;
+      padding: 8px 30px; // Espaçamento interno do botão
+      font-size: 16px; // Tamanho da fonte
+      color: white; // Cor do texto
+      background-color: #28a745; // Cor de fundo
+      border: none; // Sem borda
+      border-radius: 8px; // Bordas arredondadas
+      cursor: pointer; // Cursor de ponteiro
+      transition: background-color 0.3s ease; // Transição suave de cor
+
+      @media (max-width: 768px) {
+        width: 100%; // Botão ocupa toda a largura em telas menores
+      }
+    }
+  }
+
+  & .table-section {
+    // Estilo para a seção da tabela
+    margin-top: 20px; // Margem superior
+
+    // Estilo para a tabela
+    table {
+      width: 100%; // Tabela ocupa toda a largura
+      border-collapse: collapse; // Remove espaçamento entre as células
+
+      thead {
+        background-color: #f8f9fa; // Cor de fundo do cabeçalho da tabela
+      }
+
+      th,
+      td {
+        padding: 12px; // Espaçamento interno das células
+        text-align: left; // Alinhamento à esquerda
+        border: 1px solid #dee2e6; // Borda das células
+      }
+
+      // Estilo para linhas da tabela
+      tbody tr:nth-child(even) {
+        background-color: #f2f2f2; // Cor de fundo para linhas pares
+      }
+
+      tbody tr:hover {
+        background-color: #e9ecef; // Cor de fundo ao passar o mouse
+      }
+    }
+  }
+
+  & .competency-section {
+    // Estilo para a seção de contagem de dias restantes
+    margin-top: 20px; // Margem superior
+    font-size: 16px; // Tamanho da fonte
+  }
+
+  // Estilo para o botão de enviar
+  & .btn-primary {
+    padding: 10px 30px; // Espaçamento interno
+    font-size: 16px; // Tamanho da fonte
+    border: none; // Sem borda
+    border-radius: 8px; // Bordas arredondadas
+    background-color: #007bff; // Cor de fundo
+    color: white; // Cor do texto
+    cursor: pointer; // Cursor de ponteiro
+    transition: background-color 0.3s ease; // Transição suave de cor
+
+    @media (max-width: 768px) {
+      width: 100%; // Botão ocupa toda a largura em telas menores
+    }
+  }
+
+  & .btn-primary:hover {
+    background-color: #0056b3; // Cor de fundo ao passar o mouse
+  }
+
+  // Adicionando a classe .btn-warning para o botão "Editar"
+  & .btn-warning {
+    --bs-btn-color: #ffffff; // Cor do texto do botão
+    --bs-btn-bg: #007bff; // Cor de fundo do botão (amarelo padrão do Bootstrap)
+
+    color: var(--bs-btn-color);
+    background-color: var(--bs-btn-bg);
+    padding: 10px 20px; // Ajuste do espaçamento interno
+    border: none; // Sem borda
+    border-radius: 8px; // Bordas arredondadas
+    cursor: pointer; // Cursor de ponteiro
+    transition: background-color 0.3s ease; // Transição suave de cor
+
+    &:hover {
+      background-color: #0056b3; // Cor de fundo ao passar o mouse (amarelo mais escuro)
+    }
+  }
+}

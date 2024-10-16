@@ -33,7 +33,9 @@ export const useLogin = () => {
         icon: 'success',
         title: 'Login realizado!',
         text: 'Você foi autenticado com sucesso.',
-        confirmButtonText: 'OK',
+        showConfirmButton: false,
+        showCancelButton: false,
+        timer: 2000
       }).then(() => {
         // Redireciona para a página inicial após fechar o alerta
         navigate('/');
@@ -44,7 +46,9 @@ export const useLogin = () => {
         icon: 'error',
         title: 'Ocorreu um erro',
         text: 'Falha ao tentar realizar o login. Verifique suas credenciais.',
-        confirmButtonText: 'Tentar novamente',
+        showConfirmButton: false,
+        showCancelButton: false,
+        timer: 3000
       });
     } finally {
       setLoading(false);
