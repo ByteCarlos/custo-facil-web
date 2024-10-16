@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Despesas.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {calculateDaysLeft} from './calculateDaysLeft';
-export default function Despesas() {
+import calculateDaysLeft from './calculateDaysLeft';
 
 interface DespesasProps {
   setLoading: (loading: boolean) => void;
