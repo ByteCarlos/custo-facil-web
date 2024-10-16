@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Delete } from '@mui/icons-material';
 import './Despesas.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import calculateDaysLeft from './calculateDaysLeft';
+import calculateDaysLeft from '../../utils/calculateDaysLeft';
 
 interface DespesasProps {
   setLoading: (loading: boolean) => void;
@@ -9,6 +10,11 @@ interface DespesasProps {
 }
 
 export default function Despesas({ setLoading, setLoadingText }: DespesasProps) {
+
+  const [categoryFk, setCategoryFk] = useState(null);
+  const [value, setValue] = useState('');
+  const [paymentDate, setPaymentDate] = useState(null);
+
   const [daysLeft, setDaysLeft] = useState(0);
 
   useEffect(() => {
@@ -22,14 +28,16 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
       <h2>Cadastro Despesas</h2>
       <div className="form-section">
         <div className="form-item">
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" className="form-control" placeholder="Enter payment name" />
-        </div>
-        <div className="form-item">
-          <label htmlFor="despesa">Despesa</label>
-          <select id="despesa" className="form-control">
-            <option value="">Select designation</option>
-            {/* Add more options as needed */}
+          <label htmlFor="despesa">Categoria</label>
+          <select id="despesa" className="form-control" required>
+            <option value="">Selecione a categoria</option>
+            <option value="1">Material</option>
+            <option value="2">Pessoal</option>
+            <option value="3">Operacionais</option>
+            <option value="4">Tecnologia</option>
+            <option value="5">Logística</option>
+            <option value="6">Projetos</option>
+            <option value="7">Alimentação</option>
           </select>
         </div>
         <div className="form-item">
@@ -37,8 +45,8 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
           <input type="text" id="valor" className="form-control" placeholder="Valor" />
         </div>
         <div className="form-item">
-          <label htmlFor="pago">Pago</label>
-          <input type="date" id="pago" className="form-control" />
+          <label htmlFor="pago">Data do pagamento</label>
+          <input type="date" id="pago" className="form-control" required />
         </div>
         <div className="form-item">
           <button className="btn btn-success custom-button">Adicionar</button>
@@ -51,55 +59,49 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
           <table className="table table-striped table-bordered">
             <thead>
               <tr>
-                <th>SN</th>
-                <th>Nome</th>
-                <th>Despesa</th>
-                <th>Data</th>
+                <th>#</th>
+                <th>Categoria</th>
+                <th>Data do pagamento</th>
                 <th>Valor</th>
-                <th>Editar</th>
+                <th style={{textAlign: 'center'}}>Remover</th>
               </tr>
             </thead>
             <tbody>
-            <tr>
-    <td>1</td>
-    <td>Aluguel</td>
-    <td>Habitação</td>
-    <td>10/10/2024</td>
-    <td>R$ 1.500,00</td>
-    <td><button className="btn btn-warning btn-sm">Editar</button></td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Conta de Luz</td>
-    <td>Utilidades</td>
-    <td>15/10/2024</td>
-    <td>R$ 250,00</td>
-    <td><button className="btn btn-warning btn-sm">Editar</button></td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Internet</td>
-    <td>Utilidades</td>
-    <td>20/10/2024</td>
-    <td>R$ 120,00</td>
-    <td><button className="btn btn-warning btn-sm">Editar</button></td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>Supermercado</td>
-    <td>Alimentação</td>
-    <td>25/10/2024</td>
-    <td>R$ 450,00</td>
-    <td><button className="btn btn-warning btn-sm">Editar</button></td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>Transporte</td>
-    <td>Mobilidade</td>
-    <td>30/10/2024</td>
-    <td>R$ 200,00</td>
-    <td><button className="btn btn-warning btn-sm">Editar</button></td>
-  </tr>
+              <tr>
+                <td>1</td>
+                <td>Habitação</td>
+                <td>10/10/2024</td>
+                <td>R$ 1.500,00</td>
+                <td style={{textAlign: 'center'}}><button className="btn btn-danger btn-sm"><Delete /></button></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Utilidades</td>
+                <td>15/10/2024</td>
+                <td>R$ 250,00</td>
+                <td style={{textAlign: 'center'}}><button className="btn btn-danger btn-sm"><Delete /></button></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Utilidades</td>
+                <td>20/10/2024</td>
+                <td>R$ 120,00</td>
+                <td style={{textAlign: 'center'}}><button className="btn btn-danger btn-sm"><Delete /></button></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Alimentação</td>
+                <td>25/10/2024</td>
+                <td>R$ 450,00</td>
+                <td style={{textAlign: 'center'}}><button className="btn btn-danger btn-sm"><Delete /></button></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Mobilidade</td>
+                <td>30/10/2024</td>
+                <td>R$ 200,00</td>
+                <td style={{textAlign: 'center'}}><button className="btn btn-danger btn-sm"><Delete /></button></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -113,3 +115,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
     </div>
   );
 }
+function setMoneyMask() {
+  throw new Error('Function not implemented.');
+}
+

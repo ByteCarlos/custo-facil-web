@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Definindo o formato das informações do usuário
 interface User {
-  name: string;
+  nome: string;
   department: number;
   role: string;
 }
@@ -43,7 +43,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
       // Atualiza o contexto com os dados do usuário retornados pela API
       setUser({
-        name: userData.nome,
+        nome: userData.nome,
         department: userData.department,
         role: userData.role
       });
