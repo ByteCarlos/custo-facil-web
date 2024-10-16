@@ -3,6 +3,13 @@ import './Despesas.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {calculateDaysLeft} from './calculateDaysLeft';
 export default function Despesas() {
+
+interface DespesasProps {
+  setLoading: (loading: boolean) => void;
+  setLoadingText: (text: string) => void;
+}
+
+export default function Despesas({ setLoading, setLoadingText }: DespesasProps) {
   const [daysLeft, setDaysLeft] = useState(0);
 
   useEffect(() => {
