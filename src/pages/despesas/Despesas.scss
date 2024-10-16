@@ -1,142 +1,99 @@
-/* Seção de formulário */
 .despesas-container {
-  /* parent rule style properties */
-  & .form-group button {
-    margin-left: 20px; /* Ajuste o valor 20px conforme necessário */
+  // Estilo geral para a seção de despesas
+  padding: 20px;
+
+  // Estilo para o título
+  h2 {
+    margin-bottom: 20px; // Espaçamento inferior do título
   }
-  
-  & .form-group.d-flex {
-    flex-wrap: nowrap;
-  }
-  
+
   & .form-section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-  }
-  
-  & .form-group {
-    flex: 1;
-    min-width: 250px;
-    margin-bottom: 20px;
+    // Estilo para o contêiner do formulário
+    display: flex; // Usar flexbox para layout responsivo
+    flex-wrap: wrap; // Permitir que os itens quebrem para a próxima linha
+    gap: 20px; // Espaçamento entre os itens
+    justify-content: flex-start; // Alinhar itens à esquerda
+
+    @media (max-width: 768px) {
+      flex-direction: column; // Mudar para coluna em telas menores
+    }
   }
 
-  & .form-control {
-    margin-left: 10px;
+  & .form-item {
+    // Estilo para cada item do formulário
+    flex: 1; // Itens ocupam espaço flexível
+    min-width: 200px; // Largura mínima para os itens
+
+    // Estilo para o botão de adicionar
+    & .btn-success {
+      margin-left: 40px;
+      margin-top: 20px;
+      padding: 8px 30px; // Espaçamento interno do botão
+      font-size: 16px; // Tamanho da fonte
+      color: white; // Cor do texto
+      background-color: #28a745; // Cor de fundo
+      border: none; // Sem borda
+      border-radius: 8px; // Bordas arredondadas
+      cursor: pointer; // Cursor de ponteiro
+      transition: background-color 0.3s ease; // Transição suave de cor
+
+      @media (max-width: 768px) {
+        width: 100%; // Botão ocupa toda a largura em telas menores
+      }
+    }
   }
 
-  & label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
+  & .table-section {
+    // Estilo para a seção da tabela
+    margin-top: 20px; // Margem superior
+
+    // Estilo para a tabela
+    table {
+      width: 100%; // Tabela ocupa toda a largura
+      border-collapse: collapse; // Remove espaçamento entre as células
+      thead {
+        background-color: #f8f9fa; // Cor de fundo do cabeçalho da tabela
+      }
+      th, td {
+        padding: 12px; // Espaçamento interno das células
+        text-align: left; // Alinhamento à esquerda
+        border: 1px solid #dee2e6; // Borda das células
+      }
+
+      // Estilo para linhas da tabela
+      tbody tr:nth-child(even) {
+        background-color: #f2f2f2; // Cor de fundo para linhas pares
+      }
+
+      tbody tr:hover {
+        background-color: #e9ecef; // Cor de fundo ao passar o mouse
+      }
+    }
   }
 
-  & input, select {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-
-  & button {
-    font-size: 16px;
-    color: white;
-    background-color: #28a745;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  & button:hover {
-    background-color: #218838;
-  }
-
-  & /* Tabela de despesas */
-  .table-section {
-    margin-top: 40px;
-  }
-
-  & .table {
-    width: 100%;
-    margin-bottom: 20px;
-    border-collapse: collapse;
-  }
-  
-  & .table thead th {
-    background-color: #f8f9fa;
-    font-weight: bold;
-    padding: 10px;
-    border: 1px solid #dee2e6;
-  }
-
-  & .table tbody td {
-    padding: 10px;
-    border: 1px solid #dee2e6;
-    text-align: center;
-  }
-
-  & .table-responsive {
-    overflow-x: auto;
-  }
-
-  & .table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-
-  & .table tbody td button {
-    padding: 5px 10px;
-    font-size: 14px;
-    background-color: #007bff;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  & .table tbody td button:hover {
-    background-color: #0056b3;
-  }
-
-  /* Seção de contagem de competência */
   & .competency-section {
-    margin-top: 20px;
+    // Estilo para a seção de contagem de dias restantes
+    margin-top: 20px; // Margem superior
+    font-size: 16px; // Tamanho da fonte
   }
 
-  & .competency-section h4 {
-    color: #e74c3c;
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-   /* Botão enviar */
+  // Estilo para o botão de enviar
   & .btn-primary {
-    background-color: #007bff;
-    border: none;
-    padding: 10px 30px;
-    color: white;
-    font-size: 16px;
-    border-radius: 5px;
-  }
+    padding: 10px 30px; // Espaçamento interno
+    font-size: 16px; // Tamanho da fonte
+    border: none; // Sem borda
+    border-radius: 8px; // Bordas arredondadas
+    background-color: #007bff; // Cor de fundo
+    color: white; // Cor do texto
+    cursor: pointer; // Cursor de ponteiro
+    transition: background-color 0.3s ease; // Transição suave de cor
 
+    @media (max-width: 768px) {
+      width: 100%; // Botão ocupa toda a largura em telas menores
+    }
+  }
   & .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; // Cor de fundo ao passar o mouse
   }
-  /* Ajustes gerais */
-
-  & h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 30px;
-  }
-
-  & h4 {
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  & .mt-4 {
-    margin-top: 40px;
-  }
+  
 }
