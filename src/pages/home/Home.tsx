@@ -1,6 +1,11 @@
 import './Home.css'
 
-export default function Home () {
+interface HomeProps {
+    setLoading: (loading: boolean) => void;
+    setLoadingText: (text: string) => void;
+}
+
+export default function Home ({ setLoading, setLoadingText }: HomeProps) {
     return (
         <div className="content-container">
             <div className='home-title'>

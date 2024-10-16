@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import { UserContext } from '../../context/UserContext'; // Importando o contexto
+import { UserContext } from '../context/UserContext'; // Importando o contexto
 
 // O componente ProtectedRoute recebe o componente que deve ser protegido
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
