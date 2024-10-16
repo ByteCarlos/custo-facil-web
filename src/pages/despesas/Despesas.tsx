@@ -10,11 +10,6 @@ interface DespesasProps {
 }
 
 export default function Despesas({ setLoading, setLoadingText }: DespesasProps) {
-
-  const [categoryFk, setCategoryFk] = useState(null);
-  const [value, setValue] = useState('');
-  const [paymentDate, setPaymentDate] = useState(null);
-
   const [daysLeft, setDaysLeft] = useState(0);
 
   useEffect(() => {
