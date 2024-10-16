@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './Despesas.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Despesas() {
+interface DespesasProps {
+  setLoading: (loading: boolean) => void;
+  setLoadingText: (text: string) => void;
+}
+
+export default function Despesas({ setLoading, setLoadingText }: DespesasProps) {
   const [daysLeft, setDaysLeft] = useState(0);
   
   // Função para calcular os dias restantes até a data de competência
