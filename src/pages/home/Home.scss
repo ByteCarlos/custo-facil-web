@@ -1,0 +1,58 @@
+/*ESTILO DA PAGINA*/
+.home-container {
+    .home-title {
+        margin: 1vh 0 5vh 0;
+    }
+
+    h1 {
+        font-family: 'Poppins';
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    /*ESTILO DA TABELA*/
+    .home-table {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .home-subtitle {
+        font-family: 'Poppins';
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 1vh;
+    }
+
+    .action-table {
+        width: 95%;
+        border-collapse: separate;
+        border-spacing: 0 15px;
+    }
+
+    /*CABEÇALHO*/
+    thead tr th {
+        font-family: 'Poppins';
+        font-size: 14px;
+        font-weight: 400;
+
+    }
+
+    th,
+    td {
+        font-family: 'Poppins';
+        font-size: 14px;
+        font-weight: 300;
+        text-align: left;
+    }
+
+    th {
+        text-transform: uppercase;
+        border-bottom: 1px soolid #333;
+    }
+
+    td {
+        height: 40px;
+        border-bottom: 1px solid #ccc;
+    }
+}
