@@ -110,7 +110,4 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
     </div>
   );
 }
-function setMoneyMask() {
-  throw new Error('Function not implemented.');
-}
 
