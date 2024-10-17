@@ -15,6 +15,7 @@ interface LoginCredentials {
 
 interface UserContextType {
   user: User | null;
+  token: string;
   setUser: (user: User | null) => void;
   login: (credentials: LoginCredentials) => Promise<void>; // Função de login
   logout: () => void;
@@ -23,6 +24,7 @@ interface UserContextType {
 // Criando o contexto com um valor inicial
 export const UserContext = createContext<UserContextType>({
   user: null,
+  token: "",
   setUser: () => {},
   login: async () => {},
   logout: () => {}
@@ -34,6 +36,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     let userData = localStorage.getItem('user');
     return userData ? JSON.parse(userData) : null;
   });
+  const [token, setToken] = useState('');
 
   // Função de login que usa Axios para autenticação
   const login = async (credentials: LoginCredentials) => {
@@ -47,6 +50,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         department: userData.department,
         role: userData.role
       });
+      setToken(userData.token);
       
       localStorage.setItem('user', JSON.stringify(userData));
       localStorage.setItem('token', userData.token);
@@ -64,7 +68,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, login, logout }}>
+    <UserContext.Provider value={{ user, setUser, login, logout, token }}>
       {children}
     </UserContext.Provider>
   );
