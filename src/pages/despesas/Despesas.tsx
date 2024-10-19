@@ -3,6 +3,8 @@ import { Delete } from '@mui/icons-material';
 import './Despesas.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import calculateDaysLeft from '../../utils/calculateDaysLeft';
+import { Categoria, Data, Despesa, getAllDespesas, getCategorias, insertData, insertDespesa } from '../../services/despesas';
+import { format } from 'date-fns';
 
 interface DespesasProps {
   setLoading: (loading: boolean) => void;
@@ -11,6 +13,60 @@ interface DespesasProps {
 
 export default function Despesas({ setLoading, setLoadingText }: DespesasProps) {
   const [daysLeft, setDaysLeft] = useState(0);
+  const [data, setData] = useState(Array<Despesa>);
+  const [categoria, setCategoria] = useState(Array<Categoria>);
+  const [value, setValue] = useState('');
+  const [dataPagamento, setDataPagamento] = useState('');
+  const [categoriaSelect, setCategoriaSelect] = useState('');
+
+  function loadData() {
+    getAllDespesas().then((result: Data) => {
+      if (result.status === 406) {
+        alert("Erro ao requisitar dados");
+      } else if (result.status === 503) {
+        alert("Serviço temporariamente indisponivel");
+      } else if (result.status === 200) {
+        setData(result.data);
+      } else {
+        alert("Erro interno, contate o ADM");
+      }
+    });
+  }
+
+  function loadCategorias() {
+    getCategorias().then((result: Data) => {
+      if (result.status === 406) {
+        alert("Erro ao requisitar Categorias");
+      } else if (result.status === 503) {
+        alert("Serviço temporariamente indisponivel");
+      } else if (result.status === 200) {
+        setCategoria(result.data);
+      } else {
+        alert("Erro interno, contate o ADM");
+      }
+    });
+  }
+
+  function insert() {
+    const userInfo = localStorage.getItem('user');
+    const user: Despesa = JSON.parse(userInfo ?? "{}");
+    console.log(user);
+    console.log(value);
+    console.log(dataPagamento);
+    console.log(categoriaSelect);
+
+    // por alguma motivo department_fk não esta sendo enviado, chega null no banco - verificar
+    const despesa = new insertData();
+    despesa.department_fk = user.department.id;
+    despesa.value = parseInt(value);
+    despesa.category_fk = parseInt(categoriaSelect);
+    despesa.insertion_date = new Date();
+    despesa.payment_date = new Date(dataPagamento);
+    despesa.status = "SUBMITTED";
+    despesa.monthly_period_fk = 3;
+
+    insertDespesa(despesa);
+  }
 
   useEffect(() => {
     // Data de exemplo, pode ser alterada conforme a necessidade
@@ -18,33 +74,36 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
     setDaysLeft(days);
   }, [daysLeft]);
 
+  useEffect(() => {
+    loadData();
+    loadCategorias();
+  }, []);
+
   return (
     <div className="content-container despesas-container">
       <h2>Cadastro Despesas</h2>
       <div className="form-section">
         <div className="form-item">
           <label htmlFor="despesa">Categoria</label>
-          <select id="despesa" className="form-control" required>
+          <select id="despesa" className="form-control" onChange={e => setCategoriaSelect(e.target.value)} required>
             <option value="">Selecione a categoria</option>
-            <option value="1">Material</option>
-            <option value="2">Pessoal</option>
-            <option value="3">Operacionais</option>
-            <option value="4">Tecnologia</option>
-            <option value="5">Logística</option>
-            <option value="6">Projetos</option>
-            <option value="7">Alimentação</option>
+            {categoria.map((val: Categoria) => {
+              return(
+                <option value={`${val.id}`}>{val.name}</option>
+              );
+            })}
           </select>
         </div>
         <div className="form-item">
           <label htmlFor="valor">Valor R$</label>
-          <input type="text" id="valor" className="form-control" placeholder="Valor" />
+          <input type="text" id="valor" className="form-control" placeholder="Valor" onChange={e => setValue(e.target.value)} required />
         </div>
         <div className="form-item">
           <label htmlFor="pago">Data do pagamento</label>
-          <input type="date" id="pago" className="form-control" required />
+          <input type="date" id="pago" className="form-control" onChange={e => setDataPagamento(e.target.value)} required />
         </div>
         <div className="form-item">
-          <button className="btn btn-success custom-button">Adicionar</button>
+          <button className="btn btn-success custom-button" onClick={insert}>Adicionar</button>
         </div>
       </div>
 
@@ -58,45 +117,21 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
                 <th>Categoria</th>
                 <th>Data do pagamento</th>
                 <th>Valor</th>
-                <th style={{textAlign: 'center'}}>Remover</th>
+                <th style={{ textAlign: 'center' }}>Remover</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Habitação</td>
-                <td>10/10/2024</td>
-                <td>R$ 1.500,00</td>
-                <td style={{textAlign: 'center'}}><button className="btn btn-danger btn-sm"><Delete /></button></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Utilidades</td>
-                <td>15/10/2024</td>
-                <td>R$ 250,00</td>
-                <td style={{textAlign: 'center'}}><button className="btn btn-danger btn-sm"><Delete /></button></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Utilidades</td>
-                <td>20/10/2024</td>
-                <td>R$ 120,00</td>
-                <td style={{textAlign: 'center'}}><button className="btn btn-danger btn-sm"><Delete /></button></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Alimentação</td>
-                <td>25/10/2024</td>
-                <td>R$ 450,00</td>
-                <td style={{textAlign: 'center'}}><button className="btn btn-danger btn-sm"><Delete /></button></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Mobilidade</td>
-                <td>30/10/2024</td>
-                <td>R$ 200,00</td>
-                <td style={{textAlign: 'center'}}><button className="btn btn-danger btn-sm"><Delete /></button></td>
-              </tr>
+              {data.map((val: Despesa) => {
+                return (
+                  <tr>
+                    <td>{val.id}</td>
+                    <td>{val.category.name}</td>
+                    <td>{format(val.payment_date, 'dd/MM/yyyy')}</td>
+                    <td>R$ {val.value}</td>
+                    <td style={{ textAlign: 'center' }}><button className="btn btn-danger btn-sm"><Delete /></button></td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>
