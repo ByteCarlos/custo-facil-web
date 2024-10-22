@@ -3,7 +3,7 @@ import { Delete } from '@mui/icons-material';
 import './Despesas.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import calculateDaysLeft from '../../utils/calculateDaysLeft';
-import { Categoria, Data, Despesa, getAllDespesas, getCategorias, insertData, insertDespesa } from '../../services/despesas';
+import { Categoria, Data, deleteDespesa, Despesa, getAllDespesas, getCategorias, insertData, insertDespesa } from '../../services/despesas';
 import { format } from 'date-fns';
 
 interface DespesasProps {
@@ -50,22 +50,46 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   function insert() {
     const userInfo = localStorage.getItem('user');
     const user: Despesa = JSON.parse(userInfo ?? "{}");
-    console.log(user);
-    console.log(value);
-    console.log(dataPagamento);
-    console.log(categoriaSelect);
 
     // por alguma motivo department_fk não esta sendo enviado, chega null no banco - verificar
     const despesa = new insertData();
-    despesa.department_fk = user.department.id;
+    despesa.department_fk = user.departmentID; // foi declarado metodo a interface Despesa
     despesa.value = parseInt(value);
     despesa.category_fk = parseInt(categoriaSelect);
     despesa.insertion_date = new Date();
     despesa.payment_date = new Date(dataPagamento);
     despesa.status = "SUBMITTED";
-    despesa.monthly_period_fk = 3;
+    despesa.monthly_period_fk = 3; // revisar como vai funcionar a inserção do periodo
 
-    insertDespesa(despesa);
+    insertDespesa(despesa).then((result: Data) => {
+      if (result.status === 406) {
+        alert("Erro ao inserir dados.");
+      } else if (result.status === 503) {
+        alert("Serviço temporariamente indisponivel");
+      } else if (result.status === 201) {
+        loadData();
+      } else {
+        alert("Erro interno, contate o ADM");
+      }
+    });
+  }
+
+  function delDespesa(despesaID: number) {
+    deleteDespesa(despesaID).then((result: Data) => {
+      if (result.status === 406) {
+        alert("Erro ao inserir dados.");
+      } else if (result.status === 503) {
+        alert("Serviço temporariamente indisponivel");
+      } else if (result.status === 200) {
+        alert("Despesa deletada");
+        loadData();
+      } else if (result.status === 404) {
+        alert("Despesa não encontrada.");
+        window.location.reload();
+      } else {
+        alert("Erro interno, contate o ADM");
+      }
+    });
   }
 
   useEffect(() => {
@@ -128,7 +152,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
                     <td>{val.category.name}</td>
                     <td>{format(val.payment_date, 'dd/MM/yyyy')}</td>
                     <td>R$ {val.value}</td>
-                    <td style={{ textAlign: 'center' }}><button className="btn btn-danger btn-sm"><Delete /></button></td>
+                    <td style={{ textAlign: 'center' }}><button className="btn btn-danger btn-sm" onClick={() => {delDespesa(val.id)}}><Delete /></button></td>
                   </tr>
                 )
               })}

@@ -30,6 +30,7 @@ export interface Despesa {
   status: String;
   category: Categorys;
   department: Department;
+  departmentID: number; // foi necessario declarar para buscar o tipo correto
   monthly_period?: MonthlyPeriods;
 };
 
@@ -95,8 +96,26 @@ export const insertDespesa = async (insertData: insertData): Promise<Data> => {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
-  }).then((result) => {
-    console.log(result);
+  }).then((result: AxiosResponse) => {
+    data.status = result.status;
+  }).catch((err: Error & AxiosResponse) => {
+    data.status = err.status;
+  });
+
+  return { ...data };
+}
+
+export const deleteDespesa = async (despesaID: number): Promise<Data> => {
+  const data = new Data();
+
+  await axios.delete(`${process.env.REACT_APP_API_URL}/despesas?id=${despesaID}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  }).then((result: AxiosResponse) => {
+    data.status = result.status;
+  }).catch((err: Error & AxiosResponse) => {
+    data.status = err.status;
   });
 
   return { ...data };
