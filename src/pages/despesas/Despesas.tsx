@@ -19,6 +19,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   const [value, setValue] = useState('');
   const [dataPagamento, setDataPagamento] = useState('');
   const [categoriaSelect, setCategoriaSelect] = useState('');
+  // eslint-disable-next-line
   const [limit, setLimit] = useState(10);
   const [offset, setOffset] = useState(0);
   const [pagina, setPagina] = useState(1);
@@ -120,6 +121,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
 
   useEffect(() => {
     loadData(offset);
+    // eslint-disable-next-line
   }, [offset]);
 
   // pagination
