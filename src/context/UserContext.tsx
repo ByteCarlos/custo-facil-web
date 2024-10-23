@@ -10,7 +10,7 @@ interface User {
 
 interface LoginCredentials {
   email: string;
-  password: string;
+  pass: string;
 }
 
 interface UserContextType {
