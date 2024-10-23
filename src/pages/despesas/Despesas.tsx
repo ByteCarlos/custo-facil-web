@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import calculateDaysLeft from '../../utils/calculateDaysLeft';
 import { Categoria, Data, deleteDespesa, Despesa, getAllDespesas, getCategorias, insertData, insertDespesa } from '../../services/despesas';
 import { format } from 'date-fns';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 interface DespesasProps {
   setLoading: (loading: boolean) => void;
@@ -18,9 +19,12 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   const [value, setValue] = useState('');
   const [dataPagamento, setDataPagamento] = useState('');
   const [categoriaSelect, setCategoriaSelect] = useState('');
+  const [limit, setLimit] = useState(10);
+  const [offset, setOffset] = useState(0);
+  const [pagina, setPagina] = useState(1);
 
-  function loadData() {
-    getAllDespesas().then((result: Data) => {
+  function loadData(offset: number) {
+    getAllDespesas(limit, offset).then((result: Data) => {
       if (result.status === 406) {
         alert("Erro ao requisitar dados");
       } else if (result.status === 503) {
@@ -67,7 +71,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
       } else if (result.status === 503) {
         alert("Serviço temporariamente indisponivel");
       } else if (result.status === 201) {
-        loadData();
+        loadData(0);
       } else {
         alert("Erro interno, contate o ADM");
       }
@@ -82,7 +86,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
         alert("Serviço temporariamente indisponivel");
       } else if (result.status === 200) {
         alert("Despesa deletada");
-        loadData();
+        loadData(offset);
       } else if (result.status === 404) {
         alert("Despesa não encontrada.");
         window.location.reload();
@@ -92,6 +96,18 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
     });
   }
 
+  async function nextPage() {
+    setPagina(pagina + 1);
+    setOffset(offset + 10);
+  }
+
+  async function previusPage() {
+    if (offset !== 0) {
+      setPagina(pagina - 1);
+      setOffset(offset - 10);
+    }
+  }
+
   useEffect(() => {
     // Data de exemplo, pode ser alterada conforme a necessidade
     const days = calculateDaysLeft('25/10/2024');
@@ -99,9 +115,15 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   }, [daysLeft]);
 
   useEffect(() => {
-    loadData();
     loadCategorias();
   }, []);
+
+  useEffect(() => {
+    loadData(offset);
+  }, [offset]);
+
+  // pagination
+
 
   return (
     <div className="content-container despesas-container">
@@ -112,7 +134,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
           <select id="despesa" className="form-control" onChange={e => setCategoriaSelect(e.target.value)} required>
             <option value="">Selecione a categoria</option>
             {categoria.map((val: Categoria) => {
-              return(
+              return (
                 <option value={`${val.id}`}>{val.name}</option>
               );
             })}
@@ -152,7 +174,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
                     <td>{val.category.name}</td>
                     <td>{format(val.payment_date, 'dd/MM/yyyy')}</td>
                     <td>R$ {val.value}</td>
-                    <td style={{ textAlign: 'center' }}><button className="btn btn-danger btn-sm" onClick={() => {delDespesa(val.id)}}><Delete /></button></td>
+                    <td style={{ textAlign: 'center' }}><button className="btn btn-danger btn-sm" onClick={() => { delDespesa(val.id) }}><Delete /></button></td>
                   </tr>
                 )
               })}
@@ -160,6 +182,24 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
           </table>
         </div>
       </div>
+
+      {/* pagination */}
+      {/* a logica da paginação ainda não foi finalizada, é preciso adicionar limite para a ultima pagina, verificar as saidas dos resultado no console do backend para ajustar o limitador */}
+      <Pagination aria-label="Page navigation example" size="sm" >
+        <PaginationItem>
+          <PaginationLink previous onClick={previusPage} />
+        </PaginationItem>
+        <PaginationItem>
+          <li>
+            <p className="page-link">{pagina}</p>
+          </li>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink next onClick={nextPage} />
+        </PaginationItem>
+      </Pagination>
+
+      {/* pagination */}
 
       <div className="competency-section mt-4">
         <h4>Falta {daysLeft} dias para acabar a competência</h4>

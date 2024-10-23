@@ -54,12 +54,16 @@ export class insertData {
   monthly_period_fk!: number;
 }
 
-export const getAllDespesas = async (): Promise<Data> => {
+export const getAllDespesas = async (limit: number, offset: number): Promise<Data> => {
   const data = new Data();
 
   await axios.get(`${process.env.REACT_APP_API_URL}/despesas`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+    params: {
+      limit: limit,
+      offset: offset,
     },
   }).then((result: AxiosResponse<Despesa[]>) => {
     data.status = result.status;
