@@ -21,7 +21,7 @@ export const useLogin = () => {
     const formData = new FormData(event.currentTarget);
     const values: LoginFormValues = {
       email: formData.get('email') as string,
-      password: formData.get('password') as string,
+      pass: formData.get('password') as string,
     };
 
     try {
