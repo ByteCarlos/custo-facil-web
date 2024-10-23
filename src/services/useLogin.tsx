@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 interface LoginFormValues {
   email: string;
-  password: string;
+  pass: string;
 }
 
 export const useLogin = () => {
@@ -21,7 +21,7 @@ export const useLogin = () => {
     const formData = new FormData(event.currentTarget);
     const values: LoginFormValues = {
       email: formData.get('email') as string,
-      pass: formData.get('password') as string,
+      pass: formData.get('password') as string
     };
 
     try {
