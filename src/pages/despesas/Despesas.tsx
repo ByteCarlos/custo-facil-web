@@ -138,6 +138,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
 
   useEffect(() => {
     loadCategorias();
+    // eslint-disable-next-line
   }, [loadingCategorias]);
 
   useEffect(() => {
