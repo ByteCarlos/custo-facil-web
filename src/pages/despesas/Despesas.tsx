@@ -50,11 +50,9 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   }
 
   function loadCategorias() {
-    if(loadingCategorias)
-      return;
-
+    setLoading(true);
     getCategorias().then((result: Data) => {
-      setLoadingCategorias(true);
+      setLoading(false);
       if (result.status === 406) {
         alert("Erro ao requisitar Categorias");
       } else if (result.status === 503) {
