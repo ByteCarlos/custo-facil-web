@@ -50,7 +50,7 @@ export class insertData {
   category_fk!: number;
   insertion_date!: Date;
   payment_date!: Date;
-  status!: String;
+  submitted!: Boolean;
   monthly_period_fk!: number;
 }
 

@@ -30,7 +30,13 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
         alert("Erro ao requisitar dados");
       } else if (result.status === 503) {
         alert("Serviço temporariamente indisponivel");
-      } else if (result.status === 200) {
+      } else if ((result.status === 200) && (result.data.length === 0)) {
+        if (offset !== 0) {
+          setPagina(pagina - 1);
+          setOffset(offset - 10);
+          alert("Sem mais dados");
+        }
+      } else if ((result.status === 200) && (result.data.length !== 0)) {
         setData(result.data);
       } else {
         alert("Erro interno, contate o ADM");
@@ -63,8 +69,8 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
     despesa.category_fk = parseInt(categoriaSelect);
     despesa.insertion_date = new Date();
     despesa.payment_date = new Date(dataPagamento);
-    despesa.status = "SUBMITTED";
-    despesa.monthly_period_fk = 3; // revisar como vai funcionar a inserção do periodo
+    despesa.submitted = true;
+    despesa.monthly_period_fk = 1; // revisar como vai funcionar a inserção do periodo
 
     insertDespesa(despesa).then((result: Data) => {
       if (result.status === 406) {
