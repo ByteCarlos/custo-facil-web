@@ -23,7 +23,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   const [dataPagamento, setDataPagamento] = useState('');
   const [categoriaSelect, setCategoriaSelect] = useState('');
   // eslint-disable-next-line
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(5);
   const [offset, setOffset] = useState(0);
   const [pagina, setPagina] = useState(1);
 
