@@ -44,46 +44,46 @@ export default function Competencias({
           </thead>
           <tbody>
             <tr>
-              <td scope="row">03/2024</td>
+              <td>03/2024</td>
               <td>01/03/2024</td>
               <td>30/03/2024</td>
-              <td className="status-aberto">Aberto</td>
+              <td className="status-aberto"><span>Aberto</span></td>
             </tr>
             <tr>
-            <td scope="row">03/2024</td>
+              <td>03/2024</td>
               <td>01/03/2024</td>
               <td>30/03/2024</td>
-              <td className="status-fechado">Fechado</td>
+              <td className="status-fechado"><span>Fechado</span></td>
             </tr>
             <tr>
-            <td scope="row">03/2024</td>
+              <td>03/2024</td>
               <td>01/03/2024</td>
               <td>30/03/2024</td>
-              <td className="status-fechado">Fechado</td>
+              <td className="status-fechado"><span>Fechado</span></td>
             </tr>
             <tr>
-            <td scope="row">03/2024</td>
+              <td>03/2024</td>
               <td>01/03/2024</td>
               <td>30/03/2024</td>
-              <td className="status-fechado">Fechado</td>
+              <td className="status-fechado"><span>Fechado</span></td>
             </tr>
             <tr>
-            <td scope="row">03/2024</td>
+              <td>03/2024</td>
               <td>01/03/2024</td>
               <td>30/03/2024</td>
-              <td className="status-fechado">Fechado</td>
+              <td className="status-fechado"><span>Fechado</span></td>
             </tr>
             <tr>
-            <td scope="row">03/2024</td>
+              <td>03/2024</td>
               <td>01/03/2024</td>
               <td>30/03/2024</td>
-              <td className="status-fechado">Fechado</td>
+              <td className="status-fechado"><span>Fechado</span></td>
             </tr>
             <tr>
-            <td scope="row">03/2024</td>
+              <td>03/2024</td>
               <td>01/03/2024</td>
               <td>30/03/2024</td>
-              <td className="status-fechado">Fechado</td>
+              <td className="status-fechado"><span>Fechado</span></td>
             </tr>
           </tbody>
         </table>

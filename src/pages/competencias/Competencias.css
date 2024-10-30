@@ -1,21 +1,7 @@
-/*IMPORTANDO FONT EXTERNA*/
-@import url('https://fonts.googleapis.com/css2?family=Bayon&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-/*VARIAVEIS DE CORES E FONTES*/
-:root{
-    --font: "Montserrat", sans-serif;
-    --border-color: #969696;
-    --font-color: #969696;
-    --color-status-fechado: #F88385;
-    --color-status-aberto: #EBF9F1;
+.title-comp {
+    height: 10%;
+}
 
-}
-/*RESETANDO O COMPORTAMENTO GLOBAL*/
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font);
-}
 /*ESTILIZANDO OS TITULOS*/
 .title-comp h1{
     margin-bottom: 20px;
@@ -23,6 +9,7 @@
 }
 /*ESTILIZANDO O FORMULARIO*/
 .title-input{
+    height: 10%;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
@@ -42,8 +29,8 @@
     height: 36.51px;
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid var(--border-color);
-    color: var(--font-color);
+    border: 1px solid #969696;
+    color: #969696;
     font-size: 14px;
 }
 /*REMOVENDO O SELETOR DE DATA*/
@@ -67,34 +54,36 @@
 /*ESTLIZANDO A TABELA*/
 
 .table-comp{
-    margin-top: 6%;
-    width: 80%;
-    overflow-x: auto;
+    margin-top: 5%;
+    width: 100%;
+    height: 60%;
+    overflow-y: auto;
 }
 .table-comp .title-table-comp h1{
     font-size: 20px;
     margin-bottom: 20px;
 }
 .table{
-    font-family: var(--font);
     font-size: 14px;
 }
 .table th, .table td{
-    padding: 18px 20px;
+    padding: 15px;
 }
-.table .status-fechado{
+.table .status-fechado span{
     color: #fff;
-    background-color: var(--color-status-fechado);
-    padding: 16px 8px;
+    background-color: #F88385;
+    padding: 10px;
     text-align: center;
-    width: 5px;
+    width: 100px;
+    display: block;
     border-radius: 100px;
 }
-.table .status-aberto{
-    color: #000; 
-    background-color: var(--color-status-aberto);
-    padding: 16px 8px;
+.table .status-aberto span{
+    color: #000;
+    background-color: #EBF9F1;
+    padding: 10px;
     text-align: center;
-    width: 5px;
+    width: 100px;
+    display: block;
     border-radius: 100px;
 }
