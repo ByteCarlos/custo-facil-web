@@ -133,7 +133,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
 
   useEffect(() => {
     loadCategorias();
-  }, []);
+  });
 
   useEffect(() => {
     loadData(offset);
