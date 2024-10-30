@@ -127,7 +127,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
 
   useEffect(() => {
     // Data de exemplo, pode ser alterada conforme a necessidade
-    const days = calculateDaysLeft('25/10/2024');
+    const days = calculateDaysLeft('31/12/2024');
     setDaysLeft(days);
   }, [daysLeft]);
 
