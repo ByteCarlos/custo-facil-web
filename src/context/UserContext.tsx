@@ -4,7 +4,8 @@ import axios from 'axios';
 // Definindo o formato das informações do usuário
 interface User {
   nome: string;
-  department: number;
+  department: string;
+  departmentID: number;
   role: string;
 }
 
@@ -45,6 +46,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       setUser({
         nome: userData.nome,
         department: userData.department,
+        departmentID: userData.departmentID,
         role: userData.role
       });
       

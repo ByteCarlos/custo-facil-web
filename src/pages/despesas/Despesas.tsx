@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Delete } from '@mui/icons-material';
 import './Despesas.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,6 +6,7 @@ import calculateDaysLeft from '../../utils/calculateDaysLeft';
 import { Categoria, Data, deleteDespesa, Despesa, getAllDespesas, getCategorias, insertData, insertDespesa } from '../../services/despesas';
 import { format } from 'date-fns';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { UserContext } from '../../context/UserContext';
 
 interface DespesasProps {
   setLoading: (loading: boolean) => void;
@@ -13,6 +14,7 @@ interface DespesasProps {
 }
 
 export default function Despesas({ setLoading, setLoadingText }: DespesasProps) {
+  const { user } = useContext(UserContext);
   const [daysLeft, setDaysLeft] = useState(0);
   const [data, setData] = useState(Array<Despesa>);
   const [categoria, setCategoria] = useState(Array<Categoria>);
@@ -26,7 +28,9 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   const [pagina, setPagina] = useState(1);
 
   function loadData(offset: number) {
+    setLoading(true);
     getAllDespesas(limit, offset).then((result: Data) => {
+      setLoading(false);
       if (result.status === 406) {
         alert("Erro ao requisitar dados");
       } else if (result.status === 503) {
@@ -64,12 +68,12 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   }
 
   function insert() {
-    const userInfo = localStorage.getItem('user');
-    const user: Despesa = JSON.parse(userInfo ?? "{}");
-
     // por alguma motivo department_fk não esta sendo enviado, chega null no banco - verificar
     const despesa = new insertData();
-    despesa.department_fk = user.departmentID; // foi declarado metodo a interface Despesa
+    // @Author: Carlos
+    // @Date: 30/10/2024
+    // Utilizar o context de usuário
+    despesa.department_fk = user ? user.departmentID : 1; // foi declarado metodo a interface Despesa
     despesa.value = parseInt(value);
     despesa.category_fk = parseInt(categoriaSelect);
     despesa.insertion_date = new Date();
@@ -77,7 +81,9 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
     despesa.submitted = true;
     despesa.monthly_period_fk = 1; // revisar como vai funcionar a inserção do periodo
 
+    setLoading(true);
     insertDespesa(despesa).then((result: Data) => {
+      setLoading(false);
       if (result.status === 406) {
         alert("Erro ao inserir dados.");
       } else if (result.status === 503) {
@@ -91,7 +97,9 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   }
 
   function delDespesa(despesaID: number) {
+    setLoading(true);
     deleteDespesa(despesaID).then((result: Data) => {
+      setLoading(false);
       if (result.status === 406) {
         alert("Erro ao inserir dados.");
       } else if (result.status === 503) {
