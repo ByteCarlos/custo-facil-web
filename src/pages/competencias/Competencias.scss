@@ -1,0 +1,91 @@
+.competencias-container {
+    .title-comp {
+        height: 10%;
+    }
+    
+    /*ESTILIZANDO OS TITULOS*/
+    .title-comp h1{
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+    /*ESTILIZANDO O FORMULARIO*/
+    .title-input{
+        height: 10%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    .input-date{
+        display: flex;
+        flex-direction: column;
+        padding-right: 20px;
+    }
+    .input-date label{
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .input-date input{
+        width: 224px;
+        height: 36.51px;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #969696;
+        color: #969696;
+        font-size: 14px;
+    }
+    /*REMOVENDO O SELETOR DE DATA*/
+    .input-date input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none;
+    }
+    .button-date .btn{
+        margin-top: 26px;
+        width: 138px;
+        height: 36.51px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 10px;
+        border: none;
+        background-color: #4753D9;
+    }
+    .button-date .btn:hover{
+        background-color: #343fb8;
+        box-shadow: none;
+    }
+    /*ESTLIZANDO A TABELA*/
+    
+    .table-comp{
+        margin-top: 5%;
+        width: 100%;
+        height: 60%;
+        overflow-y: auto;
+    }
+    .table-comp .title-table-comp h1{
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .table{
+        font-size: 14px;
+    }
+    .table th, .table td{
+        padding: 15px;
+    }
+    .table .status-fechado span{
+        color: #fff;
+        background-color: #F88385;
+        padding: 10px;
+        text-align: center;
+        width: 100px;
+        display: block;
+        border-radius: 100px;
+    }
+    .table .status-aberto span{
+        color: #000;
+        background-color: #EBF9F1;
+        padding: 10px;
+        text-align: center;
+        width: 100px;
+        display: block;
+        border-radius: 100px;
+    }
+}

@@ -1,4 +1,4 @@
-import "./Competencias.css";
+import "./Competencias.scss";
 
 interface CompetenciasProps {
   setLoading: (loading: boolean) => void;
