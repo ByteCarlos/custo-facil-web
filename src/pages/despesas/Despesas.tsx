@@ -16,6 +16,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   const [daysLeft, setDaysLeft] = useState(0);
   const [data, setData] = useState(Array<Despesa>);
   const [categoria, setCategoria] = useState(Array<Categoria>);
+  const [loadingCategorias, setLoadingCategorias] = useState(false);
   const [value, setValue] = useState('');
   const [dataPagamento, setDataPagamento] = useState('');
   const [categoriaSelect, setCategoriaSelect] = useState('');
@@ -39,7 +40,11 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   }
 
   function loadCategorias() {
+    if(loadingCategorias)
+      return;
+
     getCategorias().then((result: Data) => {
+      setLoadingCategorias(true);
       if (result.status === 406) {
         alert("Erro ao requisitar Categorias");
       } else if (result.status === 503) {
@@ -117,7 +122,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
 
   useEffect(() => {
     loadCategorias();
-  }, []);
+  }, [loadingCategorias]);
 
   useEffect(() => {
     loadData(offset);
