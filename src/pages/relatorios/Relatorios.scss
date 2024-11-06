@@ -1,0 +1,12 @@
+.relatorios-container {
+    overflow-y: auto;
+    display: inline-flex;
+
+    .report-view-small {
+        width: 40%;
+    }
+
+    .report-view-large {
+        width: 60%;
+    }
+}
