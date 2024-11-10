@@ -1,6 +1,6 @@
 .relatorios-container {
     overflow-y: auto;
-    display: inline-flex;
+    display: flex;
 
     .report-view-small {
         width: 40%;
@@ -9,4 +9,12 @@
     .report-view-large {
         width: 60%;
     }
+}
+
+.relatorio-download {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: progress;
 }
