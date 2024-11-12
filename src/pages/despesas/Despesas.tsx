@@ -221,11 +221,11 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
 
       {/* pagination */}
 
-      <div className="competency-section mt-4">
+      {/* <div className="competency-section mt-4">
         <h4>Falta {daysLeft} dias para acabar a competência</h4>
       </div>
 
-      <button className="btn btn-primary mt-3">Enviar</button>
+      <button className="btn btn-primary mt-3">Enviar</button> */}
     </div>
   );
 }
