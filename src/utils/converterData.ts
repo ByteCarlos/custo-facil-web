@@ -11,5 +11,5 @@ export default function converterData(timestamp: string): string {
     const minutes = String(date.getUTCMinutes()).padStart(2, '0');
 
     // Retorna a string formatada
-    return `${day}/${month}/${year} ${hours}:${minutes}`;
+    return `${day}/${month}/${year} às ${hours}h${minutes}`;
 }
