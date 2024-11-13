@@ -23,10 +23,9 @@ const styles = StyleSheet.create({
     header: { fontSize: 22, textAlign: 'center', marginBottom: 20, fontWeight: 'bold' },
     subHeader: { fontSize: 14, marginBottom: 10 },
     section: { marginBottom: 20 },
-    tableRow: { flexDirection: 'row', paddingVertical: 10 },
+    tableRow: { flexDirection: 'row', paddingVertical: 5 },
     cell: { width: '50%', textAlign: 'left', paddingLeft: 5 },
-    boldText: { fontWeight: 'bold' },
-    departmentTitle: { fontSize: 16, fontWeight: 'bold', marginBottom: 10 },
+    departmentTitle: { fontSize: 20, fontWeight: 'bold', marginBottom: 10 },
     separator: { borderBottom: '1px solid #000', marginBottom: 20 },
     valueText: { fontSize: 14, textAlign: 'right', paddingRight: 5 },
 });
@@ -46,8 +45,8 @@ const ReportDocument = ({ data }: ReportDocumentProps) => (
                     <Text style={styles.departmentTitle}>Departamento: {departamento.departamento}</Text>
                     {departamento.custos.map((custo, index) => (
                         <View style={styles.tableRow} key={index}>
-                            <Text style={[styles.cell, styles.boldText]}>{custo.categoria}</Text>
-                            <Text style={[styles.cell, styles.valueText]}>R$ {custo.total.toFixed(2)}</Text>
+                            <Text style={[ styles.cell ]}>{custo.categoria}</Text>
+                            <Text style={[ styles.cell, styles.valueText ]}>R$ {custo.total.toFixed(2)}</Text>
                         </View>
                     ))}
                     <View style={styles.separator} />
@@ -58,7 +57,7 @@ const ReportDocument = ({ data }: ReportDocumentProps) => (
 );
 
 const ExportPdf = () => {
-    const [data, setData] = useState<Data | null>(null);
+    const [ data, setData ] = useState<Data | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
