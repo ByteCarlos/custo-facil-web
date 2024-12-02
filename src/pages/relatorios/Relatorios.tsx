@@ -14,10 +14,10 @@ export default function Relatorios({ setLoading, setLoadingText }: RelatoriosPro
         <div className="content-container">
             <div className="relatorio-download">
                 <PDFDownloadLink
-                    document={<ExportPdf />}
+                    document={<ExportPdf setLoading={setLoading} setLoadingText={setLoadingText} />}
                     fileName="relatorio_despesas.pdf"
                 >
-                    <button>Baixar Relatório em PDF</button>
+                    <button>Exportar PDF</button>
                 </PDFDownloadLink>
             </div>
 

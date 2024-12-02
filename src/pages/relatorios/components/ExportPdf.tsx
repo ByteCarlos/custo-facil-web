@@ -56,13 +56,20 @@ const ReportDocument = ({ data }: ReportDocumentProps) => (
     </Document>
 );
 
-const ExportPdf = () => {
+interface ExportPdfProps {
+    setLoading: (loading: boolean) => void;
+    setLoadingText: (text: string) => void;
+}
+
+const ExportPdf = ({ setLoading, setLoadingText } : ExportPdfProps) => {
     const [ data, setData ] = useState<Data | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setLoading(true);
                 const reportData = await getCustosPorDepartamento();
+                setLoading(false);
                 setData(reportData);
             } catch (error) {
                 console.error("Erro ao carregar os dados do relatório:", error);
@@ -70,6 +77,7 @@ const ExportPdf = () => {
         };
 
         fetchData();
+        // eslint-disable-next-line
     }, []);
 
     return data ? <ReportDocument data={data} /> : null;

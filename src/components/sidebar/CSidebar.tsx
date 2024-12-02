@@ -61,11 +61,13 @@ const CSidebar: React.FC = () => {
                     </Link>
 
                     {/* to="/usuarios" */}
+                    {/* 
+                    TELA INDISPONÍVEL
                     <Link to={''} onClick={() => {permission("/usuarios")}}>
                         <MenuItem className='menu-item' icon={<Groups2Outlined className='menu-icon' />}>
                             Usuários
                         </MenuItem>
-                    </Link>
+                    </Link> */}
                 </div>
 
                 <div className="sidebar-footer">
