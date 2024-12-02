@@ -46,8 +46,8 @@ export default function CustosPorDepartamento({ setLoading, setLoadingText }: Cu
                     // { dataKey: 'Tecnologia', label: 'Tecnologia' },
                     // { dataKey: 'Pessoal', label: 'Pessoal' },
                     { dataKey: 'Energia', label: 'Energia' },
-                    { dataKey: 'Água', label: 'Água' },
-                    { dataKey: 'Atendimento', label: 'Atendimento' },
+                    { dataKey: 'Agua', label: 'Água' },
+                    { dataKey: 'Manutencao', label: 'Manutenção' },
                 ]}
                 height={300}
             />

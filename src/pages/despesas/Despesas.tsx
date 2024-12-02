@@ -21,6 +21,7 @@ import {
 import { format } from 'date-fns';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import { UserContext } from '../../context/UserContext';
+import Swal from 'sweetalert2';
 
 interface DespesasProps {
   setLoading: (loading: boolean) => void;
@@ -113,14 +114,21 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
     despesa.submitted = true;
     despesa.monthly_period_fk = 1; // revisar como vai funcionar a inserção do periodo
 
-    // setLoading(true);
+    setLoading(true);
     insertDespesa(despesa).then((result: Data) => {
-      // setLoading(false);
+      setLoading(false);
       if (result.status === 406) {
         alert("Erro ao inserir dados.");
       } else if (result.status === 503) {
         alert("Serviço temporariamente indisponivel");
       } else if (result.status === 201) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Despesa cadastrada com sucesso!',
+          showConfirmButton: false,
+          showCancelButton: false,
+          timer: 2000
+        });
         loadData(0);
       } else {
         alert("Erro interno, contate o ADM");

@@ -1,7 +1,7 @@
 // CSidebar.tsx
 import React, { useContext, useState } from 'react';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-import { Groups2Outlined, Logout, DensitySmall, LeaderboardOutlined, HomeOutlined, CurrencyExchangeOutlined, DateRangeOutlined } from '@mui/icons-material';
+import { Logout, DensitySmall, LeaderboardOutlined, HomeOutlined, CurrencyExchangeOutlined, DateRangeOutlined } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import './CSidebar.css';
 import { UserContext } from '../../context/UserContext';
