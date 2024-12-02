@@ -9,12 +9,21 @@
     .report-view-large {
         width: 60%;
     }
-}
 
+}
 .relatorio-download {
     margin-bottom: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     cursor: progress;
+
+    button {
+        background-color: #667A8A;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        font-weight: 500;
+    }
 }
