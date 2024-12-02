@@ -2,7 +2,7 @@ import converterMes from "../../../utils/converterMes";
 
 type Custo = {
     custoTotal: number;
-    categoria: string;
+    produtos: string;
 };
 
 type MesData = {
@@ -20,8 +20,8 @@ const prepareCustosPorDepartamento = (data: any[]) => {
         const entry: Record<string, number | string> = { departamento };
 
         if (deptData) {
-            deptData.custos.forEach((custo: { categoria: string | number; total: string | number; }) => {
-                entry[custo.categoria] = custo.total;
+            deptData.custos.forEach((custo: { produtos: string | number; total: string | number; }) => {
+                entry[custo.produtos] = custo.total;
             });
         }
         return entry;
@@ -32,26 +32,26 @@ const prepareCustosPorDepartamento = (data: any[]) => {
 
 const prepareTendenciaDeCusto = (data: MesData[]) => {
     // Extrai categorias únicas
-    const categorias = Array.from(
-        new Set(data.flatMap(entry => entry.custos.map(c => c.categoria)))
+    const produtos = Array.from(
+        new Set(data.flatMap(entry => entry.custos.map(c => c.produtos)))
     );
 
     // Cria o dataset para cada mês com cada categoria como uma chave
     const dataset = data.map(entry => {
         const item: Record<string, number | string> = { mes: converterMes(entry.mes) };
         entry.custos.forEach(custo => {
-            item[custo.categoria] = custo.custoTotal;
+            item[custo.produtos] = custo.custoTotal;
         });
         // Preenche as categorias ausentes com valor 0
-        categorias.forEach(categoria => {
-            if (!(categoria in item)) {
-                item[categoria] = 0;
+        produtos.forEach(produto => {
+            if (!(produto in item)) {
+                item[produto] = 0;
             }
         });
         return item;
     });
 
-    return { dataset, categorias };
+    return { dataset, produtos };
 };
 
 export { prepareCustosPorDepartamento, prepareTendenciaDeCusto };

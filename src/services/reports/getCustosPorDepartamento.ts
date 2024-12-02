@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
 export type Custo = {
-    categoria: string;
+    produtos: string;
     total: number;
 };
 
@@ -26,6 +26,7 @@ export async function getCustosPorDepartamento() {
             }
         }
         ).then((result: AxiosResponse<DepartamentoData[]>) => {
+            console.log(result.data);
             data.status = result.status;
             data.data = result.data;
         }).catch((err: Error & AxiosResponse) => {

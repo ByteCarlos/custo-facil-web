@@ -3,7 +3,21 @@ import { Delete } from '@mui/icons-material';
 import './Despesas.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import calculateDaysLeft from '../../utils/calculateDaysLeft';
-import { Categoria, Data, deleteDespesa, Despesa, getAllDespesas, getCategorias, insertData, insertDespesa } from '../../services/despesas';
+// eslint-disable-next-line
+import {
+  // eslint-disable-next-line
+  Categoria, 
+  Data, 
+  deleteDespesa, 
+  Despesa, 
+  getAllDespesas,
+  // eslint-disable-next-line
+  getCategorias, 
+  getProdutos, 
+  Produto, 
+  insertData, 
+  insertDespesa 
+} from '../../services/despesas';
 import { format } from 'date-fns';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import { UserContext } from '../../context/UserContext';
@@ -17,20 +31,23 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   const { user } = useContext(UserContext);
   const [daysLeft, setDaysLeft] = useState(0);
   const [data, setData] = useState(Array<Despesa>);
-  const [categoria, setCategoria] = useState(Array<Categoria>);
+  // const [categoria, setCategoria] = useState(Array<Categoria>);
+  const [produto, setProduto] = useState(Array<Produto>);
+  // eslint-disable-next-line
   const [loadingCategorias, setLoadingCategorias] = useState(false);
   const [value, setValue] = useState('');
   const [dataPagamento, setDataPagamento] = useState('');
-  const [categoriaSelect, setCategoriaSelect] = useState('');
+  // const [categoriaSelect, setCategoriaSelect] = useState('');
+  const [produtoSelect, setProdutoSelect] = useState('');
   // eslint-disable-next-line
   const [limit, setLimit] = useState(5);
   const [offset, setOffset] = useState(0);
   const [pagina, setPagina] = useState(1);
 
   function loadData(offset: number) {
-    setLoading(true);
+    // setLoading(true);
     getAllDespesas(limit, offset).then((result: Data) => {
-      setLoading(false);
+      // setLoading(false);
       if (result.status === 406) {
         alert("Erro ao requisitar dados");
       } else if (result.status === 503) {
@@ -42,6 +59,7 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
           alert("Sem mais dados");
         }
       } else if ((result.status === 200) && (result.data.length !== 0)) {
+        // console.log(result.data);
         setData(result.data);
       } else {
         alert("Erro interno, contate o ADM");
@@ -49,16 +67,32 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
     });
   }
 
-  function loadCategorias() {
-    setLoading(true);
-    getCategorias().then((result: Data) => {
-      setLoading(false);
+  // function loadCategorias() {
+  //   // setLoading(true);
+  //   getCategorias().then((result: Data) => {
+  //     // setLoading(false);
+  //     if (result.status === 406) {
+  //       alert("Erro ao requisitar Categorias");
+  //     } else if (result.status === 503) {
+  //       alert("Serviço temporariamente indisponivel");
+  //     } else if (result.status === 200) {
+  //       setCategoria(result.data);
+  //     } else {
+  //       alert("Erro interno, contate o ADM");
+  //     }
+  //   });
+  // }
+
+  function loadProdutos() {
+    // setLoading(true);
+    getProdutos().then((result: Data) => {
+      // setLoading(false);
       if (result.status === 406) {
         alert("Erro ao requisitar Categorias");
       } else if (result.status === 503) {
         alert("Serviço temporariamente indisponivel");
       } else if (result.status === 200) {
-        setCategoria(result.data);
+        setProduto(result.data);
       } else {
         alert("Erro interno, contate o ADM");
       }
@@ -66,22 +100,22 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   }
 
   function insert() {
-    // por alguma motivo department_fk não esta sendo enviado, chega null no banco - verificar
     const despesa = new insertData();
     // @Author: Carlos
     // @Date: 30/10/2024
     // Utilizar o context de usuário
     despesa.department_fk = user ? user.departmentID : 1; // foi declarado metodo a interface Despesa
     despesa.value = parseInt(value);
-    despesa.category_fk = parseInt(categoriaSelect);
+    // despesa.category_fk = parseInt(categoriaSelect);
+    despesa.produtos_fk = parseInt(produtoSelect);
     despesa.insertion_date = new Date();
     despesa.payment_date = new Date(dataPagamento);
     despesa.submitted = true;
     despesa.monthly_period_fk = 1; // revisar como vai funcionar a inserção do periodo
 
-    setLoading(true);
+    // setLoading(true);
     insertDespesa(despesa).then((result: Data) => {
-      setLoading(false);
+      // setLoading(false);
       if (result.status === 406) {
         alert("Erro ao inserir dados.");
       } else if (result.status === 503) {
@@ -95,9 +129,9 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   }
 
   function delDespesa(despesaID: number) {
-    setLoading(true);
+    // setLoading(true);
     deleteDespesa(despesaID).then((result: Data) => {
-      setLoading(false);
+      // setLoading(false);
       if (result.status === 406) {
         alert("Erro ao inserir dados.");
       } else if (result.status === 503) {
@@ -133,7 +167,8 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
   }, [daysLeft]);
 
   useEffect(() => {
-    loadCategorias();
+    // loadCategorias();
+    loadProdutos();
     // eslint-disable-next-line
   }, [loadingCategorias]);
 
@@ -149,13 +184,25 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
     <div className="content-container despesas-container">
       <h2>Cadastro Despesas</h2>
       <div className="form-section">
-        <div className="form-item">
+        {/* <div className="form-item">
           <label htmlFor="despesa">Categoria</label>
           <select id="despesa" className="form-control" onChange={e => setCategoriaSelect(e.target.value)} required>
             <option value="">Selecione a categoria</option>
             {categoria.map((val: Categoria) => {
               return (
                 <option value={`${val.id}`}>{val.name}</option>
+              );
+            })}
+          </select>
+        </div> */}
+        {/* isso aqui, essa bela grosseria é o reaproveitamento de ultima hora (se bem que a mesma coisa) */}
+        <div className="form-item">
+          <label htmlFor="despesa">Produtos</label>
+          <select id="despesa" className="form-control" onChange={e => setProdutoSelect(e.target.value)} required>
+            <option value="">Selecione o Produtos</option>
+            {produto.map((val: Produto) => {
+              return (
+                <option value={`${val.id}`}>{val.nome}</option>
               );
             })}
           </select>
@@ -180,9 +227,10 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
             <thead>
               <tr>
                 <th>#</th>
-                <th>Categoria</th>
+                {/* <th>Categoria</th> */}
                 <th>Data do pagamento</th>
                 <th>Valor</th>
+                <th>Produto</th>
                 <th style={{ textAlign: 'center' }}>Remover</th>
               </tr>
             </thead>
@@ -191,9 +239,10 @@ export default function Despesas({ setLoading, setLoadingText }: DespesasProps) 
                 return (
                   <tr>
                     <td>{val.id}</td>
-                    <td>{val.category.name}</td>
+                    {/* <td>{val.category.name}</td> */}
                     <td>{format(val.payment_date, 'dd/MM/yyyy')}</td>
                     <td>R$ {val.value}</td>
+                    <td>{val.produto.nome}</td>
                     <td style={{ textAlign: 'center' }}><button className="btn btn-danger btn-sm" onClick={() => { delDespesa(val.id) }}><Delete /></button></td>
                   </tr>
                 )

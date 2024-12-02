@@ -51,7 +51,7 @@ export default function Home({ setLoading, setLoadingText }: HomeProps) {
                         {logs.map((log) => (
                             <tr>
                                 <td>{log.action.name}</td>
-                                <td>{log.user.name}</td>
+                                <td>{log.user !== null ? log.user.name : null}</td>
                                 <td>{converterData(log.log_timestamp)}</td>
                             </tr>
                         ))}

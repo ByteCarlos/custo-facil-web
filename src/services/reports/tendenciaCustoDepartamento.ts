@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
 type Custo = {
-    categoria: string;
+    produtos: string;
     custoTotal: number;
 };
 
