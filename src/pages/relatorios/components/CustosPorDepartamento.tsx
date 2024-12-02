@@ -41,10 +41,13 @@ export default function CustosPorDepartamento({ setLoading, setLoadingText }: Cu
                 dataset={dataset}
                 xAxis={[{ scaleType: 'band', dataKey: 'departamento', label: 'Departamento' }]}
                 series={[
-                    { dataKey: 'Material', label: 'Material' },
-                    { dataKey: 'Operacionais', label: 'Operacionais' },
-                    { dataKey: 'Tecnologia', label: 'Tecnologia' },
-                    { dataKey: 'Pessoal', label: 'Pessoal' },
+                    // { dataKey: 'Material', label: 'Material' },
+                    // { dataKey: 'Operacionais', label: 'Operacionais' },
+                    // { dataKey: 'Tecnologia', label: 'Tecnologia' },
+                    // { dataKey: 'Pessoal', label: 'Pessoal' },
+                    { dataKey: 'Energia', label: 'Energia' },
+                    { dataKey: 'Água', label: 'Água' },
+                    { dataKey: 'Atendimento', label: 'Atendimento' },
                 ]}
                 height={300}
             />

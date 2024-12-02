@@ -7,6 +7,7 @@ interface User {
   department: string;
   departmentID: number;
   role: string;
+  pages: Object;
 }
 
 interface LoginCredentials {
@@ -42,12 +43,15 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, credentials);
       const userData = response.data;
 
+      console.log(response.data);
+
       // Atualiza o contexto com os dados do usuário retornados pela API
       setUser({
         nome: userData.nome,
         department: userData.department,
         departmentID: userData.departmentID,
-        role: userData.role
+        role: userData.role,
+        pages: userData.pages,
       });
       
       localStorage.setItem('user', JSON.stringify(userData));

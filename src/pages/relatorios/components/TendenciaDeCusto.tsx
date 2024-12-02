@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 // Definindo os tipos de dados
 type Custo = {
-    categoria: string;
+    produtos: string;
     custoTotal: number;
 };
 
@@ -25,7 +25,7 @@ interface TendenciaDeCustoProps {
 export default function TendenciaDeCusto({ departmentId, setLoading, setLoadingText }: TendenciaDeCustoProps) {
     const [data, setData] = useState<MesData[]>([]);
     const [loadingData, setLoadingData] = useState(false);
-    const { dataset, categorias } = prepareTendenciaDeCusto(data);
+    const { dataset, produtos } = prepareTendenciaDeCusto(data);
 
     const fetchData = async () => {
         if (loadingData)
@@ -33,7 +33,7 @@ export default function TendenciaDeCusto({ departmentId, setLoading, setLoadingT
         try {
             setLoadingData(true);
             setLoading(true);
-            const result = await getTendenciaCustoDepartamento(3);
+            const result = await getTendenciaCustoDepartamento(2);
             setData(result.data);
             setLoading(false);
         } catch (error) {
@@ -53,9 +53,9 @@ export default function TendenciaDeCusto({ departmentId, setLoading, setLoadingT
             <LineChart
                 dataset={dataset}
                 xAxis={[{ dataKey: 'mes', label: 'Mês', scaleType: 'band' }]}
-                series={categorias.map(categoria => ({
-                    dataKey: categoria,
-                    label: categoria,
+                series={produtos.map(produto => ({
+                    dataKey: produto,
+                    label: produto,
                     strokeWidth: 2
                 }))}
                 height={300}

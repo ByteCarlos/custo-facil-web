@@ -5,6 +5,7 @@ import { Groups2Outlined, Logout, DensitySmall, LeaderboardOutlined, HomeOutline
 import { Link } from 'react-router-dom';
 import './CSidebar.css';
 import { UserContext } from '../../context/UserContext';
+import { checkPermission, Permission } from '../../services/sidebar';
 
 const CSidebar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -13,6 +14,16 @@ const CSidebar: React.FC = () => {
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
   };
+
+  function permission(routecheck: String) {
+    checkPermission(routecheck).then((result: Permission) => {
+        if (result.permisso === true) {
+            window.location.href = String(routecheck);
+        } else {
+            alert(result.msg);
+        }
+    });
+  }
 
   return (
     <div className={`custom-sidebar ${collapsed ? 'collapsed-sidebar' : ''}`}>
@@ -27,26 +38,30 @@ const CSidebar: React.FC = () => {
                             Página Inicial
                         </MenuItem>
                     </Link>
-
-                    <Link to="/despesas">
+                    
+                    {/* to="/despesas" */}
+                    <Link to={''} onClick={() => {permission("/despesas")}}>
                         <MenuItem className='menu-item' icon={<CurrencyExchangeOutlined className='menu-icon' />}>
                             Despesas
                         </MenuItem>
                     </Link>
 
-                    <Link to="/competencias">
+                    {/* to="/competencias" */}
+                    <Link to={''} onClick={() => {permission("/monthly-period")}}>
                         <MenuItem className='menu-item' icon={<DateRangeOutlined className='menu-icon' />}>
                         Competências
                         </MenuItem>
                     </Link>
 
-                    <Link to="/relatorios">
+                    {/* to="/relatorios" */}
+                    <Link to={''} onClick={() => {permission("/relatorios")}}>
                         <MenuItem className='menu-item' icon={<LeaderboardOutlined className='menu-icon' />}>
                         Relatórios
                         </MenuItem>
                     </Link>
 
-                    <Link to="/usuarios">
+                    {/* to="/usuarios" */}
+                    <Link to={''} onClick={() => {permission("/usuarios")}}>
                         <MenuItem className='menu-item' icon={<Groups2Outlined className='menu-icon' />}>
                             Usuários
                         </MenuItem>
